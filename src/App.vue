@@ -1,17 +1,9 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import TabItem from "./components/TabItem.vue"
-import { computed } from "@vue/reactivity";
+import TabList from "./components/TabList.vue"
 
 // 创建一个变量记录选项卡状态
 const current = ref(0) // 0表示球员。1 表示球队
-
-const team = reactive({
-  name: "万叶",
-  img: "/images/wy.jpeg",
-  rate: 1,
-  hot: 4338
-})
 
 const players = reactive([
   {
@@ -70,16 +62,11 @@ const teamMaxHot = teams[0].hot
     <!-- 选项卡主体 -->
     <div class="main">
       <!-- 0 球员 1 球队 -->
-      <div v-show="current === 0">
-        <div class="tab-list">
-          <TabItem v-for="player in players" :item="player" :maxHot="playerMaxHot"></TabItem>
-        </div>
-
+      <div v-show="current === 0">       
+        <TabList :items="players" :maxHot="playerMaxHot"></TabList>
       </div>
       <div v-show="current === 1">
-        <div class="tab-list">
-          <TabItem v-for="team in teams" :item="team" :maxHot="teamMaxHot"></TabItem>
-        </div>
+        <TabList :items="teams" :maxHot="teamMaxHot"></TabList>
       </div>
     </div>
   </div>
@@ -118,7 +105,4 @@ const teamMaxHot = teams[0].hot
   color: #fff;
 }
 
-.tab-list {
-  margin: 20px;
-}
 </style>
