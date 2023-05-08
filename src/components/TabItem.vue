@@ -4,7 +4,6 @@
     const props = defineProps(["item",'maxHot'])
     const item = props.item
     const maxHot = props.maxHot
-    console.log(maxHot)
 </script>
 
 <template>
